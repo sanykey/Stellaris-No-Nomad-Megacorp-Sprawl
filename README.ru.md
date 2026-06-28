@@ -1,4 +1,4 @@
-# No Nomad Megacorp Sprawl
+# Stellaris mod: No Nomad Megacorp Sprawl
 
 [English](README.md) | **Русский**
 
