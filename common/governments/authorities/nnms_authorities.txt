@@ -1,0 +1,60 @@
+# Authorities are extendable: this block adds nomadic variants to the vanilla
+# Corporate authority without replacing the rest of its definition.
+auth_corporate = {
+	# Keep the normal Corporate authority bonuses for nomads, except for the
+	# additional Empire Size from Colonies penalty.
+	#
+	# The exclusions leave all vanilla ascended authorities in control once one
+	# of their own triggers becomes active.
+	advanced_authority_swap = {
+		name = "auth_corporate"
+		description = "auth_corporate_desc"
+		inherit_icon = yes
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			is_nomadic = yes
+			NOR = {
+				has_country_flag = cyber_creed_advanced_government
+				has_country_flag = cyber_individualist
+				has_country_flag = cyber_collectivist
+				has_country_flag = synth_physical
+				has_country_flag = synth_virtual
+				has_country_flag = bio_purity
+				has_country_flag = bio_cloning
+				has_country_flag = bio_mutation
+				is_transcendent_authority = yes
+				is_corporeal_authority = yes
+			}
+		}
+		modifier = {
+			planet_jobs_trade_produces_mult = 0.10
+			nomadic_contract_value_mult = 0.10
+			envoys_add = 1
+		}
+	}
+
+	# BioPredation GLC normally replaces the base authority effects and adds the
+	# same +50% colony penalty again. This more specific swap must outrank the
+	# vanilla BioPredation swap while the empire remains nomadic.
+	advanced_authority_swap = {
+		name = "auth_bio_corporate_evopred"
+		description = "auth_bio_corporate_evopred_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			is_nomadic = yes
+			has_country_flag = bio_mutation
+			has_origin = origin_evolutionary_predators
+		}
+		modifier = {
+			planet_jobs_trade_produces_mult = 0.10
+			custom_tooltip = auth_bio_corporate_evopred_tt
+			show_only_custom_tooltip = no
+		}
+		weight = {
+			base = 100
+		}
+	}
+}
